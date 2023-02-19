@@ -1,7 +1,6 @@
-from selenium import webdriver
-import VisitWebsite
 from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.options import Options
+import VisitWebsite
+
 
 class Login:
 

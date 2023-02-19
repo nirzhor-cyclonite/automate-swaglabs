@@ -6,6 +6,8 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import login
 import VisitWebsite
+import products
+
 
 
 # Press the green button in the gutter to run the script.
@@ -27,6 +29,9 @@ if __name__ == '__main__':
 
     login = login.Login(driver)
     login.LOGIN_SWAGLABS(expected_title)
+
+    products = products.Products(driver)
+    products.PURCHASE_PRODUCTS()
 
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
