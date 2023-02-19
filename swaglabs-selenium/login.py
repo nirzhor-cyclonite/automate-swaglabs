@@ -1,21 +1,12 @@
-from selenium import  webdriver
+from selenium import webdriver
+import VisitWebsite
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 
-class Milestone_3_4:
-    def __init__(self, my_url):
-        self.my_url = my_url
-        # keep browser window open
-        chrome_options = Options()
-        chrome_options.add_experimental_option("detach", True)
+class Login:
 
-        self.driver = webdriver.Chrome(chrome_options = chrome_options)
-        self.driver.maximize_window()
-
-    def GET_WEBSITE_TITLE(self):
-        self.driver.get(self.my_url)
-        title = self.driver.title
-        return title
+    def __init__(self, driver):
+        self.driver = driver
 
     def VERIFY_PAGE_TITLE(self, expected_title, observed_title):
         try:
@@ -65,9 +56,11 @@ class Milestone_3_4:
         element = self.driver.find_element(By.ID, "login-button")
         element.click()
 
-    def VISIT_WEBSITE(self, expected_title):
+    def LOGIN_SWAGLABS(self, expected_title):
         expected_title = expected_title
-        observed_title = self.GET_WEBSITE_TITLE()
+
+        visitWebsite = VisitWebsite.StartUp(self.driver)
+        observed_title = visitWebsite.GET_WEBSITE_TITLE()
 
         print("Title of the Page:", observed_title)
         self.VERIFY_PAGE_TITLE(expected_title, observed_title)
