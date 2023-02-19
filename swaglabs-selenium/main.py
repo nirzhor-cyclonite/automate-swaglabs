@@ -44,6 +44,7 @@ if __name__ == '__main__':
 
     checkout = checkout.Checkout(driver)
     checkout.SET_MY_INFORMATION(first_name, last_name, zip_code)
+    time.sleep(5)
     checkout.CLICK_CONTINUE_BUTTON()
 
 

@@ -17,7 +17,6 @@ class Checkout:
         element = self.GET_ELEMENT("placeholder","First Name")
         element.send_keys(first_name)
 
-        element.send_keys(last_name)
         element = self.GET_ELEMENT("placeholder","Last Name")
         element.send_keys(last_name)
 
