@@ -1,10 +1,13 @@
-from selenium.webdriver.common.by import By
-import VisitWebsite
 import csv
+import time
+
+from selenium.webdriver.common.by import By
+
 
 class Products:
     def __init__(self, driver):
         self.driver = driver
+        self.total_bill = 0.0
 
     def GET_PRODUCT_WISHLIST(self, filename="product_list.csv"):
         with open(filename, 'r') as data:
@@ -40,12 +43,20 @@ class Products:
 
         return price
 
+    def CLICK_CART_ICON(self):
+        element = self.driver.find_element(By.CLASS_NAME, "shopping_cart_link")
+        element.click()
+
     def PURCHASE_PRODUCTS(self):
-        total_bill = 0.0
+
         shopping_list = self.GET_PRODUCT_WISHLIST()
         for key, value in shopping_list.items():
             if(int(value) == 1):
                 self.ADD_PRODUCT_TO_CART(key)
-                total_bill += self.GET_PRODUCT_PRICE()
+                self.total_bill += self.GET_PRODUCT_PRICE(key)
 
-        print('Total Bill: ' + str(total_bill))
+        print('Total Bill: ' + str(self.total_bill))
+        time.sleep(2) #added for presentation purpose
+
+        self.CLICK_CART_ICON()
+
